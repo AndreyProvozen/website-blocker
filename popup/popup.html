@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <title>Website Blocker</title>
+  </head>
+  <body>
+    <header>
+      <div class="header__logo">
+        <img
+          width="24px"
+          height="24px"
+          src="../images/icon-32.png"
+          alt="Logo"
+        />
+        <h1 class="header__extension-name">Website Blocker</h1>
+      </div>
+      <img src="../assets/cross.svg" class="cross" alt="cross icon" />
+    </header>
+    <main>
+      <div class="main__content">
+        <div>
+          <p class="main__info-label">You are currently on:</p>
+          <p id="domain" />
+          <p id="full-link" />
+        </div>
+        <div class="main__time-remaining">
+          <p>Time remaining</p>
+          <p>00:10:00</p>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="popup.js"></script>
+</html>

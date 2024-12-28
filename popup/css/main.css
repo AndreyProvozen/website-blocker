@@ -1,0 +1,33 @@
+@import "./variables.css";
+
+main {
+  margin: 10px;
+}
+
+.main__content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.main__info-label {
+  color: var(--gray-dark);
+}
+
+.main__time-remaining {
+  padding: 10px;
+  background: var(--blue-light);
+}
+
+#domain {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#full-link {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

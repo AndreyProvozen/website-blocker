@@ -1,0 +1,23 @@
+:root {
+  --black: #000;
+  --white: #fff;
+  --blue-dark: #021d44;
+  --gray-dark: #666;
+  --blue-light: #669bbc;
+
+  --font-family: Arial, sans-serif;
+  --body-width: 450px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  width: var(--body-width);
+  margin: 0;
+}
