@@ -1,0 +1,21 @@
+@import "./variables.css";
+
+footer {
+  background-color: var(--blue-dark);
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+}
+
+.footer__nav-item {
+  padding: 8px;
+  border-radius: 8px;
+  flex: 1;
+  background-color: var(--blue-light);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
