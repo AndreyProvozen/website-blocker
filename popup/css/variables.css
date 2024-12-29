@@ -3,10 +3,14 @@
   --white: #fff;
   --blue-dark: #021d44;
   --gray-dark: #666;
-  --blue-light: #669bbc;
+  --blue-light: #a3cde8;
 
   --font-family: Arial, sans-serif;
   --body-width: 450px;
+
+  --font-size-small: 12px;
+  --font-size-medium: 14px;
+  --font-size-large: 16px;
 }
 
 * {
@@ -17,7 +21,15 @@
 
 body {
   font-family: var(--font-family);
-  font-size: 16px;
+  font-size: var(--font-size-medium);
   width: var(--body-width);
   margin: 0;
+}
+
+.one-line-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

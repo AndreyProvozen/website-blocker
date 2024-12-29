@@ -22,7 +22,7 @@ header {
   white-space: nowrap;
 }
 
-.cross {
+#cross {
   cursor: pointer;
   transition: 0.3s;
 

@@ -11,23 +11,27 @@ main {
 }
 
 .main__info-label {
+  margin-bottom: 4px;
   color: var(--gray-dark);
 }
 
-.main__time-remaining {
+.main__time-block {
   padding: 10px;
+  text-align: center;
   background: var(--blue-light);
+}
+
+.main__time-title {
+  text-transform: uppercase;
+  font-size: var(--font-size-small);
 }
 
 #domain {
   font-weight: bold;
-  font-size: 18px;
+  font-size: var(--font-size-large);
 }
 
-#full-link {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
+#time-remaining {
+  font-weight: bold;
+  font-size: 25px;
 }

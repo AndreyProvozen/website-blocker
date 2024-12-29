@@ -1,26 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (tabs?.length > 0) {
-      const [tab] = tabs;
+    if (!tabs?.length) return;
 
-      const domainElement = document.querySelector("#domain");
-      const fullLinkElement = document.querySelector("#full-link");
+    const [tab] = tabs;
 
-      try {
-        const url = new URL(tab.url);
+    const domainElement = document.querySelector("#domain");
+    const fullLinkElement = document.querySelector("#full-link");
+    const websiteIconElement = document.querySelector("#website-icon");
 
-        domainElement.textContent = url.hostname;
-        fullLinkElement.textContent = tab.url;
-      } catch (error) {
-        console.error("Error parsing URL:", error);
+    websiteIconElement.src = tab.favIconUrl;
+    websiteIconElement.addEventListener("error", () => {
+      websiteIconElement.style.display = "none";
+    });
 
-        domainElement.textContent = "Invalid URL";
-        fullLinkElement.textContent = "N/A";
-      }
+    const url = new URL(tab.url);
+    domainElement.textContent = url.hostname;
 
-      return;
-    }
-
-    console.error("No active tab found.");
+    fullLinkElement.textContent = tab.url;
   });
+
+  const closeButton = document.querySelector("#cross");
+  closeButton.addEventListener("click", () => window.close());
+
+  const timeRemainingElement = document.querySelector("#time-remaining");
+  timeRemainingElement.textContent = "00:10:00";
 });

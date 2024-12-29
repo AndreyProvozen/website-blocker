@@ -12,25 +12,35 @@
     <header>
       <div class="header__logo">
         <img
-          width="24px"
-          height="24px"
+          width="26px"
+          height="26px"
           src="../images/icon-32.png"
-          alt="Logo"
+          alt="Logo icon"
         />
         <h1 class="header__extension-name">Website Blocker</h1>
       </div>
-      <img src="../assets/cross.svg" class="cross" alt="cross icon" />
+      <img src="../assets/cross.svg" id="cross" alt="Cross icon" />
     </header>
     <main>
       <div class="main__content">
-        <div>
+        <div style="overflow: hidden">
           <p class="main__info-label">You are currently on:</p>
-          <p id="domain" />
-          <p id="full-link" />
+          <div style="display: flex; align-items: center; gap: 4px">
+            <img
+              id="website-icon"
+              width="32px"
+              height="32px"
+              alt="Current website icon"
+            />
+            <div style="overflow: hidden">
+              <p class="one-line-truncate" id="domain" />
+              <p class="one-line-truncate" id="full-link" />
+            </div>
+          </div>
         </div>
-        <div class="main__time-remaining">
-          <p>Time remaining</p>
-          <p>00:10:00</p>
+        <div class="main__time-block">
+          <p class="main__time-title">Time remaining</p>
+          <p id="time-remaining" />
         </div>
       </div>
     </main>
