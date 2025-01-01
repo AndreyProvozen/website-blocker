@@ -2,21 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs?.length) return;
 
-    const [tab] = tabs;
+    const [{ favIconUrl, url }] = tabs;
 
     const domainElement = document.querySelector("#domain");
     const fullLinkElement = document.querySelector("#full-link");
     const websiteIconElement = document.querySelector("#website-icon");
 
-    websiteIconElement.src = tab.favIconUrl;
+    websiteIconElement.src = favIconUrl;
     websiteIconElement.addEventListener("error", () => {
       websiteIconElement.style.display = "none";
     });
 
-    const url = new URL(tab.url);
-    domainElement.textContent = url.hostname;
+    const currentTabUrl = new URL(url);
+    domainElement.textContent = currentTabUrl.hostname;
 
-    fullLinkElement.textContent = tab.url;
+    fullLinkElement.textContent = url;
   });
 
   const closeButton = document.querySelector("#cross");

@@ -1,0 +1,18 @@
+:root {
+  --black: #000;
+  --white: #fff;
+  --red: #ff4d4d;
+  --red-dark: #e63e3e;
+  --blue-dark: #021d44;
+  --gray-dark: #666;
+  --blue-light: #a3cde8;
+
+  --font-family: Arial, sans-serif;
+  --body-width: 400px;
+
+  --font-size-small: 12px;
+  --font-size-medium: 14px;
+  --font-size-large: 16px;
+  --font-size-xlarge: 18px;
+  --font-size-xxlarge: 20px;
+}

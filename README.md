@@ -1,6 +1,6 @@
 # Website Blocker Chrome Extension
 
-A
+Stay focused by blocking distracting websites with ease.
 
 ## Features
 
