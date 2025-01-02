@@ -2,24 +2,25 @@ main {
   margin: 10px;
 }
 
-.main__content {
+.current-website__top-section {
   display: flex;
   justify-content: space-between;
   gap: 40px;
 }
 
-.main__info-label {
+.current-website__info-label {
   margin-bottom: 4px;
   color: var(--gray-dark);
 }
 
-.main__time-block {
+.current-website__time-block {
   padding: 10px;
   text-align: center;
-  background: var(--blue-light);
+  border-radius: 4px;
+  background: var(--gray);
 }
 
-.main__time-title {
+.current-website__time-title {
   text-transform: uppercase;
   font-size: var(--font-size-small);
 }

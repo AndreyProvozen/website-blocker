@@ -3,6 +3,7 @@ footer {
   padding: 10px;
   gap: 10px;
   display: flex;
+  margin-top: auto;
   align-items: center;
   color: var(--white);
 }
@@ -11,9 +12,24 @@ footer {
   padding: 6px;
   border-radius: 6px;
   flex: 1;
-  background-color: var(--blue-light);
+  cursor: pointer;
+  background-color: var(--sky-blue);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   gap: 2px;
+  border: none;
+  outline: none;
   align-items: center;
+
+  &:hover {
+    background-color: var(--sky-blue-dark);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &.active {
+    background-color: var(--coral);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    cursor: default;
+  }
 }

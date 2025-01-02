@@ -2,17 +2,23 @@
   --black: #000;
   --white: #fff;
   --red: #ff4d4d;
+  --coral: #ff6f61;
+  --sky-blue: #3498db;
+  --gray: #ccc;
+
+  --sky-blue-dark: #2a82c9;
   --red-dark: #e63e3e;
   --blue-dark: #021d44;
   --gray-dark: #666;
-  --blue-light: #a3cde8;
 
   --font-family: Arial, sans-serif;
-  --body-width: 400px;
+  --body-width: 370px;
+  --body-height: 500px;
 
   --font-size-small: 12px;
   --font-size-medium: 14px;
   --font-size-large: 16px;
   --font-size-xlarge: 18px;
   --font-size-xxlarge: 20px;
+  --font-size-xxxlarge: 22px;
 }

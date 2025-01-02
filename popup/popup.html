@@ -14,8 +14,8 @@
     <header>
       <div class="header__logo">
         <img
-          width="26px"
-          height="26px"
+          width="29px"
+          height="29px"
           src="../images/icon-32.png"
           alt="Logo icon"
         />
@@ -24,42 +24,44 @@
       <img src="../assets/cross.svg" id="cross" alt="Cross icon" />
     </header>
     <main>
-      <div class="main__content">
-        <div style="overflow: hidden">
-          <p class="main__info-label">You are currently on:</p>
-          <div style="display: flex; align-items: center; gap: 4px">
-            <img
-              id="website-icon"
-              width="32px"
-              height="32px"
-              alt="Current website icon"
-            />
-            <div style="overflow: hidden">
-              <p class="one-line-truncate" id="domain" />
-              <p class="one-line-truncate" id="full-link" />
+      <div class="main__current-website">
+        <div class="current-website__top-section">
+          <div style="overflow: hidden">
+            <p class="current-website__info-label">You are currently on:</p>
+            <div style="display: flex; align-items: center; gap: 4px">
+              <img
+                id="website-icon"
+                width="32px"
+                height="32px"
+                alt="Current website icon"
+              />
+              <div style="overflow: hidden">
+                <p class="one-line-truncate" id="domain" />
+                <p class="one-line-truncate" id="full-link" />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="main__time-block">
-          <p class="main__time-title">Time remaining</p>
-          <p id="time-remaining" />
+          <div class="current-website__time-block">
+            <p class="current-website__time-title">Time remaining</p>
+            <p id="time-remaining" />
+          </div>
         </div>
       </div>
     </main>
     <footer>
-      <div class="footer__nav-item">
+      <button class="footer__nav-item">
         <img src="../assets/black-list.svg" alt="Blocked list icon" />
         <p>Blocked List</p>
-      </div>
-      <div class="footer__nav-item">
+      </button>
+      <button class="footer__nav-item active">
         <img src="../assets/world.svg" alt="Current website icon" />
         <p>Current Website</p>
-      </div>
-      <div class="footer__nav-item">
+      </button>
+      <button class="footer__nav-item">
         <img src="../assets/settings.svg" alt="Settings icon" />
         <p>Settings</p>
-      </div>
+      </button>
     </footer>
   </body>
-  <script src="popup.js"></script>
+  <script src="../scripts/popup.js"></script>
 </html>
