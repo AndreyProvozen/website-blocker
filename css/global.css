@@ -22,3 +22,39 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.primary-button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: var(--font-size-large);
+  transition: 0.3s;
+  background-color: var(--sky-blue);
+  color: var(--white);
+  border: none;
+  outline: none;
+
+  &:hover {
+    background-color: var(--sky-blue-dark);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.secondary-button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: var(--font-size-large);
+  transition: 0.3s;
+  background-color: var(--white);
+  color: var(--sky-blue);
+  border: 2px solid var(--sky-blue);
+  outline: none;
+
+  &:hover {
+    background-color: var(--blue-dark);
+    border-color: var(--blue-dark);
+    color: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+}

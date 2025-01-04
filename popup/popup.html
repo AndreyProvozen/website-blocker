@@ -28,7 +28,7 @@
         <div class="current-website__top-section">
           <div style="overflow: hidden">
             <p class="current-website__info-label">You are currently on:</p>
-            <div style="display: flex; align-items: center; gap: 4px">
+            <div style="display: flex; align-items: center; gap: 8px">
               <img
                 id="website-icon"
                 width="32px"
@@ -46,18 +46,24 @@
             <p id="time-remaining" />
           </div>
         </div>
+        <div class="current-website__bottom-section">
+          <button id="block-site-button" class="primary-button" />
+          <button id="manage-blocked-list" class="secondary-button">
+            Manage blocked list
+          </button>
+        </div>
       </div>
     </main>
     <footer>
-      <button class="footer__nav-item">
+      <button class="footer__nav-item primary-button">
         <img src="../assets/black-list.svg" alt="Blocked list icon" />
         <p>Blocked List</p>
       </button>
-      <button class="footer__nav-item active">
+      <button class="footer__nav-item active primary-button">
         <img src="../assets/world.svg" alt="Current website icon" />
-        <p>Current Website</p>
+        <p>Current Site</p>
       </button>
-      <button class="footer__nav-item">
+      <button class="footer__nav-item primary-button">
         <img src="../assets/settings.svg" alt="Settings icon" />
         <p>Settings</p>
       </button>

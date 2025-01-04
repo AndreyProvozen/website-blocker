@@ -8,6 +8,14 @@ main {
   gap: 40px;
 }
 
+.current-website__bottom-section {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  padding: 9px 12px;
+}
+
 .current-website__info-label {
   margin-bottom: 4px;
   color: var(--gray-dark);
@@ -33,4 +41,9 @@ main {
 #time-remaining {
   font-weight: bold;
   font-size: 25px;
+}
+
+#block-site-button,
+#manage-blocked-list {
+  width: 100%;
 }

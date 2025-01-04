@@ -10,22 +10,13 @@ footer {
 
 .footer__nav-item {
   padding: 6px;
-  border-radius: 6px;
   flex: 1;
-  cursor: pointer;
-  background-color: var(--sky-blue);
-  color: var(--white);
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border: none;
-  outline: none;
+  justify-content: center;
+  height: 100%;
   align-items: center;
-
-  &:hover {
-    background-color: var(--sky-blue-dark);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
 
   &.active {
     background-color: var(--coral);

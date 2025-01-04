@@ -24,4 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const timeRemainingElement = document.querySelector("#time-remaining");
   timeRemainingElement.textContent = "00:10:00";
+
+  const blockSiteElement = document.querySelector("#block-site-button");
+  blockSiteElement.textContent = "Add to blocked list";
 });
