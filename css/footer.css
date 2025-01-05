@@ -1,11 +1,16 @@
 footer {
   background-color: var(--blue-dark);
+  position: sticky;
+  bottom: 0;
   padding: 10px;
-  gap: 10px;
-  display: flex;
   margin-top: auto;
-  align-items: center;
   color: var(--white);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .footer__nav-item {

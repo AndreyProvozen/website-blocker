@@ -1,5 +1,7 @@
 header {
   background-color: var(--blue-dark);
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   padding: 10px 0 10px 10px;

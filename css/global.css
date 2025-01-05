@@ -8,7 +8,7 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size-medium);
   width: var(--body-width);
-  height: var(--body-height);
+  min-height: var(--body-height);
   display: flex;
   flex-direction: column;
   margin: 0;
