@@ -1,21 +1,12 @@
-chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-  if (changeInfo.status === "complete") {
-    startTimerForTab(tabId);
-  }
-});
-
 const startTimerForTab = (tabId) => {
-  const expirationTime = Date.now() + 3000;
+  // TODO
+  const expirationTime = Date.now() + 300000;
   chrome.alarms.create(`tab-${tabId}`, { when: expirationTime });
 };
 
-chrome.alarms.onAlarm.addListener((alarm) => {
-  const tabId = parseInt(alarm.name.split("-")[1]);
-  if (!isNaN(tabId)) {
-    chrome.scripting.executeScript({
-      target: { tabId },
-      func: renderExpirationScreen,
-    });
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if (changeInfo.status === "complete") {
+    startTimerForTab(tabId);
   }
 });
 
@@ -126,3 +117,13 @@ const renderExpirationScreen = () => {
   document.body.appendChild(wrapper);
   document.body.style.overflow = "hidden";
 };
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  const tabId = parseInt(alarm.name.split("-")[1]);
+  if (!isNaN(tabId)) {
+    chrome.scripting.executeScript({
+      target: { tabId },
+      func: renderExpirationScreen,
+    });
+  }
+});

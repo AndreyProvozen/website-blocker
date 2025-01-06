@@ -19,7 +19,7 @@
     }
   },
   "host_permissions": ["https://*/*", "http://*/*"],
-  "permissions": ["activeTab", "scripting", "tabs", "alarms"],
+  "permissions": ["activeTab", "scripting", "storage", "tabs", "alarms"],
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -32,7 +32,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["images/*", "scripts/content.js"],
+      "resources": ["images/*"],
       "matches": ["https://*/*", "http://*/*"]
     }
   ]
