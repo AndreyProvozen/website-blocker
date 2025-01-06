@@ -8,6 +8,10 @@ main {
   gap: 40px;
 }
 
+.main__blocked-list {
+  display: none;
+}
+
 .current-website__bottom-section {
   margin-top: 10px;
   display: flex;
