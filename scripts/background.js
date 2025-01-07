@@ -1,11 +1,14 @@
 const startTimerForTab = (tabId) => {
-  // TODO
   const expirationTime = Date.now() + 300000;
   chrome.alarms.create(`tab-${tabId}`, { when: expirationTime });
 };
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-  if (changeInfo.status === "complete") {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (
+    changeInfo.status === "complete" &&
+    tab.url &&
+    !isRestrictedUrl(tab.url)
+  ) {
     startTimerForTab(tabId);
   }
 });
@@ -29,7 +32,6 @@ const renderExpirationScreen = () => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff; /* --white */
     z-index: 999999;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
@@ -37,28 +39,29 @@ const renderExpirationScreen = () => {
     transition: all 0.3s ease-in-out;
   }
 
-  #${WRAPPER_ID} .logo {
+  #${WRAPPER_ID} .exp-logo {
     width: 120px;
     height: 120px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
 
-  #${WRAPPER_ID} .message {
-    font-size: 20px; /* --font-size-xxlarge */
-    font-weight: bold; 
-    margin: 0;
+  #${WRAPPER_ID} .exp-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff; 
     text-align: center;
+    margin: 0;
   }
 
-  #${WRAPPER_ID} .content {
+  #${WRAPPER_ID} .exp-content {
     padding: 40px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #021d44; /* --blue-dark */
+    background-color: #021d44;
     gap: 20px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     max-width: 400px;
@@ -66,23 +69,23 @@ const renderExpirationScreen = () => {
     transition: transform 0.3s ease-in-out;
   }
 
-  #${WRAPPER_ID} .close-button {
+  #${WRAPPER_ID} .exp-close-button {
     padding: 12px 30px;
-    font-size: 18px; /* --font-size-xlarge */
+    font-size: 18px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-color: #ff4d4d; /* --red */
-    color: #fff; /* --white */
+    background-color: #ff4d4d;
+    color: #fff;
     font-weight: bold;
     transition: background-color 0.3s ease-in-out;
   }
 
-  #${WRAPPER_ID} .close-button:hover {
-    background-color: #e63e3e; /* --red-dark */
+  #${WRAPPER_ID} .exp-close-button:hover {
+    background-color: #e63e3e;
   }
 
-  #${WRAPPER_ID} .close-button:focus {
+  #${WRAPPER_ID} .exp-close-button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
   }
@@ -92,20 +95,20 @@ const renderExpirationScreen = () => {
   wrapper.id = WRAPPER_ID;
 
   const content = document.createElement("div");
-  content.className = "content";
+  content.className = "exp-content";
 
   const image = document.createElement("img");
   image.src = chrome.runtime.getURL("../images/icon-128.png");
-  image.className = "logo";
+  image.className = "exp-logo";
   image.alt = "Extension logo icon";
 
   const message = document.createElement("p");
   message.textContent = "Time's up! You've reached your limit for today.";
-  message.className = "message";
+  message.className = "exp-message";
 
   const closeButton = document.createElement("button");
   closeButton.textContent = "Close window";
-  closeButton.className = "close-button";
+  closeButton.className = "exp-close-button";
 
   content.appendChild(image);
   content.appendChild(message);
@@ -120,10 +123,20 @@ const renderExpirationScreen = () => {
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   const tabId = parseInt(alarm.name.split("-")[1]);
+
   if (!isNaN(tabId)) {
-    chrome.scripting.executeScript({
-      target: { tabId },
-      func: renderExpirationScreen,
+    chrome.tabs.get(tabId, (tab) => {
+      if (tab?.url && !isRestrictedUrl(tab.url)) {
+        chrome.scripting.executeScript({
+          target: { tabId },
+          func: renderExpirationScreen,
+        });
+      }
     });
   }
 });
+
+const isRestrictedUrl = (url) =>
+  url.startsWith("chrome://") ||
+  url.startsWith("about:") ||
+  url.startsWith("edge://");

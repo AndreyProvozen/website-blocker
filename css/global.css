@@ -17,7 +17,7 @@ body {
 .one-line-truncate {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  word-break: break-word;
+  word-break: break-all;
   -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
