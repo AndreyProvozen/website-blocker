@@ -4,16 +4,49 @@ import {
 } from "../../utils/storageUtils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const blockedListElement = document.querySelector("#blocked-list");
+  const blockedListTabElement = document.querySelector("#blocked-list-tab");
   const blockSiteButtonElement = document.querySelector("#block-site-button");
 
   const renderBlockedList = (blockedSites) => {
-    blockedListElement.innerHTML = "";
+    blockedListTabElement.innerHTML = "";
 
     if (blockedSites.length === 0) {
-      blockedListElement.innerHTML = "<p>No websites are blocked yet.</p>";
+      const emptyListImage = document.createElement("img");
+      emptyListImage.className = "blocked-list__empty-list-image";
+      emptyListImage.alt = "Empty list image";
+      emptyListImage.src = chrome.runtime.getURL(
+        "../../../images/empty-list-icon.png"
+      );
+
+      const emptyListTitle = document.createElement("p");
+      emptyListTitle.textContent = "Your blocked list is empty";
+      emptyListTitle.className = "blocked-list__empty-list-title";
+
+      const emptyListSubTitle = document.createElement("p");
+      emptyListSubTitle.textContent =
+        "Start adding websites to your blocked list and take control of your focus.";
+      emptyListSubTitle.className = "blocked-list__empty-list-subtitle";
+
+      const emptyListButton = document.createElement("button");
+      emptyListButton.textContent = "Add Websites";
+      emptyListButton.className =
+        "secondary-button blocked-list__empty-list-button";
+
+      const emptyListContainer = document.createElement("div");
+      emptyListContainer.className = "blocked-list__empty-list-container";
+
+      emptyListContainer.appendChild(emptyListImage);
+      emptyListContainer.appendChild(emptyListTitle);
+      emptyListContainer.appendChild(emptyListSubTitle);
+      emptyListContainer.appendChild(emptyListButton);
+
+      blockedListTabElement.appendChild(emptyListContainer);
       return;
     }
+
+    const title = document.createElement("p");
+    title.textContent = "Blocked List";
+    title.className = "current-website__info-label";
 
     const list = document.createElement("ul");
 
@@ -31,16 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
       list.appendChild(listItem);
     });
 
-    blockedListElement.appendChild(list);
+    blockedListTabElement.appendChild(title);
+    blockedListTabElement.appendChild(list);
   };
 
   const updateButtonState = (blockedSites, currentDomain) => {
     if (blockedSites.includes(currentDomain)) {
       blockSiteButtonElement.textContent = "Remove from blocked list";
-      blockSiteButtonElement.classList.add("blocked");
     } else {
       blockSiteButtonElement.textContent = "Add to blocked list";
-      blockSiteButtonElement.classList.remove("blocked");
     }
   };
 

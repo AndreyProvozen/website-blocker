@@ -1,5 +1,5 @@
 main {
-  margin: 10px;
+  margin: 10px 10px auto 10px;
 }
 
 .current-website__top-section {
@@ -35,6 +35,38 @@ main {
 .current-website__time-title {
   text-transform: uppercase;
   font-size: var(--font-size-small);
+}
+
+.blocked-list__empty-list-image {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: var(--blue-dark);
+  border: 2px solid var(--sky-blue);
+  text-align: center;
+}
+
+.blocked-list__empty-list-title {
+  font-weight: bold;
+  margin: 8px 0 4px 0;
+  font-size: var(--font-size-xlarge);
+}
+
+.blocked-list__empty-list-subtitle {
+  max-width: 270px;
+  font-size: var(--font-size-large);
+}
+
+.blocked-list__empty-list-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.blocked-list__empty-list-button {
+  margin-top: 8px;
 }
 
 #domain {

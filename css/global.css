@@ -10,6 +10,7 @@ body {
   width: var(--body-width);
   min-height: var(--body-height);
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   margin: 0;
 }
