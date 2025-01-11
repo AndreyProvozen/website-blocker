@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentDomain = currentTabUrl.hostname;
 
     domainElement.textContent = currentDomain;
+
     fullLinkElement.textContent = url;
+    fullLinkElement.title = url;
   });
 });
 
