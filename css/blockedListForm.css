@@ -1,0 +1,23 @@
+.add-to-list__title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.add-to-list__checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.add-to-list__time-wrapper {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-to-list__submit-button {
+  width: 100%;
+  margin-top: 8px;
+}

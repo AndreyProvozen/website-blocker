@@ -9,6 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const blockedListTabElement = document.querySelector("#blocked-list-tab");
   const blockSiteButtonElement = document.querySelector("#block-site-button");
 
+  const updateButtonState = (blockedSites, currentDomain) => {
+    if (blockedSites.includes(currentDomain)) {
+      blockSiteButtonElement.textContent = "Remove from blocked list";
+    } else {
+      blockSiteButtonElement.textContent = "Add to blocked list";
+    }
+  };
+
   const renderContent = (blockedSites) => {
     if (blockedSites.length === 0) {
       renderEmptyList(blockedListTabElement, chrome);
@@ -19,16 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
       blockedListTabElement,
       blockedSites,
       chrome,
-      renderContent
+      (blockedSites) => {
+        renderContent(blockedSites);
+        updateButtonState(blockedSites);
+      }
     );
-  };
-
-  const updateButtonState = (blockedSites, currentDomain) => {
-    if (blockedSites.includes(currentDomain)) {
-      blockSiteButtonElement.textContent = "Remove from blocked list";
-    } else {
-      blockSiteButtonElement.textContent = "Add to blocked list";
-    }
   };
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

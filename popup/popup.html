@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/blockedList.css" />
+    <link rel="stylesheet" href="../css/blockedListForm.css" />
     <link rel="stylesheet" href="../css/footer.css" />
     <title>Website Blocker</title>
   </head>
@@ -49,13 +50,50 @@
         </div>
         <div class="current-website__bottom-section">
           <button id="block-site-button" class="common-button primary-button" />
-          <button
-            id="manage-blocked-list"
-            class="common-button secondary-button"
-          >
-            Manage blocked list
+          <button id="settings-button" class="common-button secondary-button">
+            Manage settings
           </button>
         </div>
+      </div>
+      <div class="main__add-to-blocked-list">
+        <p class="add-to-list__title">Blocked list form</p>
+        <div>
+          <label class="current-website__info-label" for="new-blocked-link"
+            >Website link</label
+          >
+          <input
+            type="url"
+            placeholder="https://example.com"
+            class="input-field"
+            name="new-blocked-link"
+            required
+          />
+        </div>
+        <div class="add-to-list__time-wrapper">
+          <label class="current-website__info-label" for="block-time"
+            >Daily available time
+          </label>
+          <input
+            type="time"
+            class="input-field"
+            id="block-time"
+            name="block-time"
+            required
+          />
+        </div>
+        <div class="add-to-list__checkbox-wrapper">
+          <input type="checkbox" id="block-whole-site" />
+          <label
+            class="current-website__info-label"
+            style="margin-bottom: 0"
+            for="block-whole-site"
+          >
+            Block whole site
+          </label>
+        </div>
+        <button class="add-to-list__submit-button common-button primary-button">
+          Add to blocked list
+        </button>
       </div>
       <div id="blocked-list-tab" class="main__blocked-list" />
     </main>
@@ -70,8 +108,8 @@
           <p>Current Site</p>
         </button>
         <button class="footer__nav-item common-button primary-button">
-          <img src="../assets/settings.svg" alt="Settings icon" />
-          <p>Settings</p>
+          <img src="../assets/plus-circle.svg" alt="Plus icon" />
+          <p>Add to List</p>
         </button>
       </nav>
     </footer>

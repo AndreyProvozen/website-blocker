@@ -66,3 +66,18 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
 }
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--blue-dark);
+  border-radius: 4px;
+  font-size: var(--font-size-medium);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 5px var(--sky-blue);
+  }
+}

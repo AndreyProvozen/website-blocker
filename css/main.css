@@ -8,7 +8,8 @@ main {
   gap: 20px;
 }
 
-.main__blocked-list {
+.main__blocked-list,
+.main__add-to-blocked-list {
   display: none;
 }
 
@@ -48,6 +49,6 @@ main {
 }
 
 #block-site-button,
-#manage-blocked-list {
+#settings-button {
   width: 100%;
 }
