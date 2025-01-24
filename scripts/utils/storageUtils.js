@@ -10,11 +10,16 @@ export const setBlockedSites = (blockedSites, callback) => {
   chrome.storage.local.set({ [STORAGE_KEY]: blockedSites }, callback);
 };
 
-export const toggleBlockedSite = (domain, callback) => {
+export const toggleBlockedSite = (link, time, isWholeDomain, callback) => {
   getBlockedSites((blockedSites) => {
-    const updatedSites = blockedSites.includes(domain)
-      ? blockedSites.filter((site) => site !== domain)
-      : [...blockedSites, domain];
-    setBlockedSites(updatedSites, () => callback(updatedSites));
+    const existingIndex = blockedSites.findIndex((site) => site.link === link);
+
+    if (existingIndex > -1) {
+      blockedSites.splice(existingIndex, 1);
+    } else {
+      blockedSites.push({ link, time, isWholeDomain });
+    }
+
+    setBlockedSites(blockedSites, () => callback(blockedSites));
   });
 };

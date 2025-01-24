@@ -15,8 +15,8 @@ export const renderBlockedList = (
   const list = document.createElement("ul");
   list.className = "blocked-list__list";
 
-  blockedSites.forEach((site, index) => {
-    const linkType = index % 2 === 0 ? "house" : "link";
+  blockedSites.forEach(({ link, time, isWholeDomain }) => {
+    const linkType = isWholeDomain ? "house" : "link";
 
     const listItem = document.createElement("li");
     listItem.className = "blocked-list__list-item";
@@ -32,7 +32,7 @@ export const renderBlockedList = (
 
     const blockedLink = document.createElement("p");
     blockedLink.className = "blocked-list__link";
-    blockedLink.textContent = site;
+    blockedLink.textContent = link;
 
     linkWrapper.appendChild(linkTypeImage);
     linkWrapper.appendChild(blockedLink);
@@ -41,18 +41,16 @@ export const renderBlockedList = (
     actionWrapper.className = "blocked-list__section-wrapper";
 
     const editButton = document.createElement("button");
-    editButton.className =
-      "common-button primary-button blocked-list__button-base";
+    editButton.className = "primary-button blocked-list__button-base";
 
     const editIcon = document.createElement("img");
     editIcon.src = chrome.runtime.getURL("../../../assets/edit.svg");
 
     const removeButton = document.createElement("button");
     removeButton.addEventListener("click", () =>
-      toggleBlockedSite(site, callback)
+      toggleBlockedSite(link, time, isWholeDomain, callback)
     );
-    removeButton.className =
-      "common-button danger-button blocked-list__button-base";
+    removeButton.className = "danger-button blocked-list__button-base";
 
     const removeIcon = document.createElement("img");
     removeIcon.src = chrome.runtime.getURL("../../../assets/trash.svg");

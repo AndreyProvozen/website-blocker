@@ -26,7 +26,7 @@
       <img src="../assets/cross.svg" id="cross" alt="Cross icon" />
     </header>
     <main>
-      <div class="main__current-website">
+      <section class="main__current-website">
         <div class="current-website__top-section">
           <div style="overflow: hidden">
             <p class="current-website__info-label">You are currently on:</p>
@@ -49,65 +49,53 @@
           </div>
         </div>
         <div class="current-website__bottom-section">
-          <button id="block-site-button" class="common-button primary-button" />
-          <button id="settings-button" class="common-button secondary-button">
+          <button id="block-site-button" class="primary-button" />
+          <button id="settings-button" class="secondary-button">
             Manage settings
           </button>
         </div>
-      </div>
-      <div class="main__add-to-blocked-list">
+      </section>
+      <section class="main__add-to-blocked-list">
         <p class="add-to-list__title">Blocked list form</p>
         <div>
-          <label class="current-website__info-label" for="new-blocked-link"
-            >Website link</label
-          >
+          <label for="new-blocked-link">Website link</label>
           <input
             type="url"
             placeholder="https://example.com"
-            class="input-field"
-            name="new-blocked-link"
+            id="new-blocked-link"
             required
           />
         </div>
         <div class="add-to-list__time-wrapper">
-          <label class="current-website__info-label" for="block-time"
-            >Daily available time
-          </label>
-          <input
-            type="time"
-            class="input-field"
-            id="block-time"
-            name="block-time"
-            required
-          />
+          <label for="block-time">Daily available time (HH:MM)</label>
+          <input type="time" id="block-time" value="00:25" required />
         </div>
         <div class="add-to-list__checkbox-wrapper">
           <input type="checkbox" id="block-whole-site" />
-          <label
-            class="current-website__info-label"
-            style="margin-bottom: 0"
-            for="block-whole-site"
-          >
+          <label style="margin-bottom: 0" for="block-whole-site">
             Block whole site
           </label>
         </div>
-        <button class="add-to-list__submit-button common-button primary-button">
+        <button
+          id="add-to-list-button"
+          class="add-to-list__submit-button primary-button"
+        >
           Add to blocked list
         </button>
-      </div>
-      <div id="blocked-list-tab" class="main__blocked-list" />
+      </section>
+      <section id="blocked-list-tab" class="main__blocked-list" />
     </main>
     <footer>
       <nav>
-        <button class="footer__nav-item common-button primary-button">
+        <button class="footer__nav-item primary-button">
           <img src="../assets/black-list.svg" alt="Blocked list icon" />
           <p>Blocked List</p>
         </button>
-        <button class="footer__nav-item active common-button primary-button">
+        <button class="footer__nav-item active primary-button">
           <img src="../assets/world.svg" alt="Current website icon" />
           <p>Current Site</p>
         </button>
-        <button class="footer__nav-item common-button primary-button">
+        <button class="footer__nav-item primary-button">
           <img src="../assets/plus-circle.svg" alt="Plus icon" />
           <p>Add to List</p>
         </button>
@@ -117,6 +105,7 @@
   <script src="../scripts/popup//header.js"></script>
   <script src="../scripts/popup/footer.js"></script>
   <script src="../scripts/popup/tabs/currentPage.js"></script>
+  <script src="../scripts/popup/tabs/addToList.js" type="module"></script>
   <script src="../scripts/utils/storageUtils.js" type="module"></script>
   <script src="../scripts/utils/renderEmptyList.js" type="module"></script>
   <script src="../scripts/popup/tabs/blockedList.js" type="module"></script>

@@ -15,16 +15,7 @@ body {
   margin: 0;
 }
 
-.one-line-truncate {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  word-break: break-all;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.common-button {
+button {
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -32,6 +23,46 @@ body {
   transition: 0.3s;
   border: none;
   outline: none;
+}
+
+input:not([type="checkbox"]) {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--blue-dark);
+  border-radius: 4px;
+  font-size: var(--font-size-medium);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 5px var(--sky-blue);
+  }
+}
+
+input:not([type="checkbox"]).error {
+  border-color: var(--red);
+  box-shadow: 0 0 5px var(--red);
+  background-color: rgba(255, 0, 0, 0.1);
+
+  &:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 7px var(--red);
+  }
+}
+
+label {
+  margin-bottom: 4px;
+  color: var(--gray-dark);
+}
+
+.one-line-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .primary-button {
@@ -64,20 +95,5 @@ body {
   &:hover {
     background-color: var(--red-dark);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.input-field {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--blue-dark);
-  border-radius: 4px;
-  font-size: var(--font-size-medium);
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-
-  &:focus {
-    border-color: var(--sky-blue);
-    box-shadow: 0 0 5px var(--sky-blue);
   }
 }

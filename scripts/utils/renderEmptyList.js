@@ -20,7 +20,7 @@ export const renderEmptyList = (container, chrome) => {
   const emptyListButton = document.createElement("button");
   emptyListButton.textContent = "Add Websites";
   emptyListButton.className =
-    "common-button secondary-button blocked-list__empty-list-button";
+    "secondary-button blocked-list__empty-list-button";
 
   const emptyListContainer = document.createElement("div");
   emptyListContainer.className = "blocked-list__empty-list-container";

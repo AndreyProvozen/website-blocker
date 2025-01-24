@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const blockSiteButtonElement = document.querySelector("#block-site-button");
 
   const updateButtonState = (blockedSites, currentDomain) => {
-    if (blockedSites.includes(currentDomain)) {
+    const isBlocked = blockedSites.some((site) => site.link === currentDomain);
+
+    if (isBlocked) {
       blockSiteButtonElement.textContent = "Remove from blocked list";
     } else {
       blockSiteButtonElement.textContent = "Add to blocked list";
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateButtonState(blockedSites, currentDomain);
 
       blockSiteButtonElement.addEventListener("click", () => {
-        toggleBlockedSite(currentDomain, (updatedSites) => {
+        toggleBlockedSite(currentDomain, "00:25", false, (updatedSites) => {
           renderContent(updatedSites);
           updateButtonState(updatedSites, currentDomain);
         });
