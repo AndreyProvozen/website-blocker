@@ -3,8 +3,7 @@ import { toggleBlockedSite } from "../../utils/storageUtils.js";
 document.querySelector("#add-to-list-button").addEventListener("click", () => {
   const linkInput = document.querySelector("#new-blocked-link");
   const timeInput = document.querySelector("#block-time");
-  const isWholeSiteCheckbox =
-    document.querySelector("#block-whole-site").checked;
+  const isWholeSiteCheckbox = document.querySelector("#block-whole-site");
 
   const link = linkInput.value.trim();
   const time = timeInput.value.trim();

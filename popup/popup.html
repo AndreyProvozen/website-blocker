@@ -50,8 +50,8 @@
         </div>
         <div class="current-website__bottom-section">
           <button id="block-site-button" class="primary-button" />
-          <button id="settings-button" class="secondary-button">
-            Manage settings
+          <button id="add-with-configuration" class="secondary-button">
+            Add with configuration
           </button>
         </div>
       </section>
@@ -76,6 +76,12 @@
             Block whole site
           </label>
         </div>
+        <div class="add-to-list__checkbox-wrapper">
+          <input type="checkbox" id="include-query" />
+          <label style="margin-bottom: 0" for="include-query">
+            Include query parameters
+          </label>
+        </div>
         <button
           id="add-to-list-button"
           class="add-to-list__submit-button primary-button"
@@ -95,7 +101,7 @@
           <img src="../assets/world.svg" alt="Current website icon" />
           <p>Current Site</p>
         </button>
-        <button class="footer__nav-item primary-button">
+        <button id="add-to-list-nav" class="footer__nav-item primary-button">
           <img src="../assets/plus-circle.svg" alt="Plus icon" />
           <p>Add to List</p>
         </button>

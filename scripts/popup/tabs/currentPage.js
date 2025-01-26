@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const websiteIconElement = document.querySelector("#website-icon");
     const domainElement = document.querySelector("#domain");
     const fullLinkElement = document.querySelector("#full-link");
+    const addWithConfigurationButton = document.querySelector(
+      "#add-with-configuration"
+    );
 
     websiteIconElement.src = favIconUrl;
     websiteIconElement.addEventListener("error", () => {
@@ -20,6 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fullLinkElement.textContent = url;
     fullLinkElement.title = url;
+
+    addWithConfigurationButton.addEventListener("click", () => {
+      const addToListNavButton = document.querySelector("#add-to-list-nav");
+      const linkInput = document.querySelector("#new-blocked-link");
+
+      linkInput.value = url;
+      addToListNavButton.click();
+    });
   });
 });
 

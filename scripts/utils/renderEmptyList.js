@@ -21,6 +21,10 @@ export const renderEmptyList = (container, chrome) => {
   emptyListButton.textContent = "Add Websites";
   emptyListButton.className =
     "secondary-button blocked-list__empty-list-button";
+  emptyListButton.addEventListener("click", () => {
+    const addToListNavButton = document.querySelector("#add-to-list-nav");
+    addToListNavButton.click();
+  });
 
   const emptyListContainer = document.createElement("div");
   emptyListContainer.className = "blocked-list__empty-list-container";
