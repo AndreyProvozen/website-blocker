@@ -1,9 +1,9 @@
 const footerNavButtons = document.querySelectorAll(".footer__nav-item");
 
 const sections = {
-  "Blocked List": document.querySelector(".main__blocked-list"),
-  "Current Site": document.querySelector(".main__current-website"),
-  "Add to List": document.querySelector(".main__add-to-blocked-list"),
+  "Blocked List": document.querySelector("#blocked-list-tab"),
+  "Current Site": document.querySelector("#current-website-tab"),
+  "Add to List": document.querySelector("#add-to-list-tab"),
 };
 
 sections["Current Site"].style.display = "block";

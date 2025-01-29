@@ -26,7 +26,7 @@
       <img src="../assets/cross.svg" id="cross" alt="Cross icon" />
     </header>
     <main>
-      <section class="main__current-website">
+      <section id="current-website-tab">
         <div class="current-website__top-section">
           <div style="overflow: hidden">
             <p class="current-website__info-label">You are currently on:</p>
@@ -55,7 +55,7 @@
           </button>
         </div>
       </section>
-      <section class="main__add-to-blocked-list">
+      <section id="add-to-list-tab" style="display: none">
         <p class="add-to-list__title">Blocked list form</p>
         <div>
           <label for="new-blocked-link">Website link</label>
@@ -89,10 +89,14 @@
           Add to blocked list
         </button>
       </section>
-      <section id="blocked-list-tab" class="main__blocked-list" />
+      <section id="blocked-list-tab" style="display: none" />
     </main>
     <footer>
       <nav>
+        <button style="display: none" class="footer__nav-item primary-button">
+          <img src="../assets/edit-tab.svg" alt="Blocked list icon" />
+          <p>Edit Item</p>
+        </button>
         <button class="footer__nav-item primary-button">
           <img src="../assets/black-list.svg" alt="Blocked list icon" />
           <p>Blocked List</p>
