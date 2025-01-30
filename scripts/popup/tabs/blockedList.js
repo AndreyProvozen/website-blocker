@@ -47,10 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
       updateButtonState(blockedSites, currentDomain);
 
       blockSiteButtonElement.addEventListener("click", () => {
-        toggleBlockedSite(currentDomain, "00:25", false, (updatedSites) => {
+        const toggleBlockedSiteCallback = (updatedSites) => {
           renderContent(updatedSites);
           updateButtonState(updatedSites, currentDomain);
-        });
+        };
+
+        toggleBlockedSite(
+          currentDomain,
+          "00:25",
+          false,
+          toggleBlockedSiteCallback
+        );
       });
     });
   });

@@ -6,7 +6,7 @@ export const getBlockedSites = (callback) => {
   });
 };
 
-export const setBlockedSites = (blockedSites, callback) => {
+const setBlockedSites = (blockedSites, callback) => {
   chrome.storage.local.set({ [STORAGE_KEY]: blockedSites }, callback);
 };
 
@@ -19,6 +19,22 @@ export const toggleBlockedSite = (link, time, isWholeDomain, callback) => {
     } else {
       blockedSites.push({ link, time, isWholeDomain });
     }
+
+    setBlockedSites(blockedSites, () => callback(blockedSites));
+  });
+};
+
+export const removeBlockedSite = (link, callback) => {
+  getBlockedSites((blockedSites) => {
+    const updatedSites = blockedSites.filter((site) => site.link !== link);
+
+    setBlockedSites(updatedSites, () => callback(updatedSites));
+  });
+};
+
+export const addBlockedSite = (link, time, isWholeDomain, callback) => {
+  getBlockedSites((blockedSites) => {
+    blockedSites.push({ link, time, isWholeDomain });
 
     setBlockedSites(blockedSites, () => callback(blockedSites));
   });

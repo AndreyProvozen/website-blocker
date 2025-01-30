@@ -1,4 +1,4 @@
-import { toggleBlockedSite } from "./storageUtils.js";
+import { removeBlockedSite } from "./storageUtils.js";
 
 export const renderBlockedList = (
   container,
@@ -15,7 +15,7 @@ export const renderBlockedList = (
   const list = document.createElement("ul");
   list.className = "blocked-list__list";
 
-  blockedSites.forEach(({ link, time, isWholeDomain }) => {
+  blockedSites.forEach(({ link, isWholeDomain }) => {
     const linkType = isWholeDomain ? "house" : "link";
 
     const listItem = document.createElement("li");
@@ -48,7 +48,7 @@ export const renderBlockedList = (
 
     const removeButton = document.createElement("button");
     removeButton.addEventListener("click", () =>
-      toggleBlockedSite(link, time, isWholeDomain, callback)
+      removeBlockedSite(link, callback)
     );
     removeButton.className = "danger-button blocked-list__button-base";
 
