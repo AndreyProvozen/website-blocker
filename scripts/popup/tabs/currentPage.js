@@ -1,38 +1,36 @@
-document.addEventListener("DOMContentLoaded", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (!tabs?.length) return;
+document.addEventListener("DOMContentLoaded", async () => {
+  const [activeTab] = await chrome.tabs.query({
+    active: true,
+    currentWindow: true,
+  });
 
-    const [{ favIconUrl, url }] = tabs;
+  if (!activeTab) return;
 
-    const websiteIconElement = document.querySelector("#website-icon");
-    const domainElement = document.querySelector("#domain");
-    const fullLinkElement = document.querySelector("#full-link");
-    const addWithConfigurationButton = document.querySelector(
-      "#add-with-configuration"
-    );
+  const { favIconUrl, url } = activeTab;
+  const { hostname } = new URL(url);
 
-    websiteIconElement.src = favIconUrl;
-    websiteIconElement.addEventListener("error", () => {
-      websiteIconElement.style.display = "none";
-    });
+  const websiteIconElement = document.querySelector("#website-icon");
+  const domainElement = document.querySelector("#domain");
+  const timeRemainingElement = document.querySelector("#time-remaining");
+  const fullLinkElement = document.querySelector("#full-link");
+  const addToListNavButton = document.querySelector("#add-to-list-nav");
+  const linkInput = document.querySelector("#new-blocked-link");
+  const addWithConfigurationButton = document.querySelector(
+    "#add-with-configuration"
+  );
 
-    const currentTabUrl = new URL(url);
-    const currentDomain = currentTabUrl.hostname;
+  websiteIconElement.src = favIconUrl;
+  websiteIconElement.addEventListener("error", () => {
+    websiteIconElement.style.display = "none";
+  });
 
-    domainElement.textContent = currentDomain;
+  domainElement.textContent = hostname;
+  fullLinkElement.textContent = fullLinkElement.title = url;
 
-    fullLinkElement.textContent = url;
-    fullLinkElement.title = url;
+  timeRemainingElement.textContent = "00:10:00";
 
-    addWithConfigurationButton.addEventListener("click", () => {
-      const addToListNavButton = document.querySelector("#add-to-list-nav");
-      const linkInput = document.querySelector("#new-blocked-link");
-
-      linkInput.value = url;
-      addToListNavButton.click();
-    });
+  addWithConfigurationButton.addEventListener("click", () => {
+    linkInput.value = url;
+    addToListNavButton.click();
   });
 });
-
-const timeRemainingElement = document.querySelector("#time-remaining");
-timeRemainingElement.textContent = "00:10:00";

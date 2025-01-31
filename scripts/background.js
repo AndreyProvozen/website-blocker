@@ -1,7 +1,13 @@
 const startTimerForTab = (tabId) => {
-  const expirationTime = Date.now() + 300000;
+  const expirationTime = Date.now() + 3000;
   chrome.alarms.create(`tab-${tabId}`, { when: expirationTime });
 };
+
+chrome.runtime.onMessage.addListener((message, sender) => {
+  if (message.action === "closeCurrentTab" && sender.tab?.id) {
+    chrome.tabs.remove(sender.tab.id);
+  }
+});
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (
@@ -109,6 +115,10 @@ const renderExpirationScreen = () => {
   const closeButton = document.createElement("button");
   closeButton.textContent = "Close window";
   closeButton.className = "exp-close-button";
+
+  closeButton.addEventListener("click", () => {
+    chrome.runtime.sendMessage({ action: "closeCurrentTab" });
+  });
 
   content.appendChild(image);
   content.appendChild(message);

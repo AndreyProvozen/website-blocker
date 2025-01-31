@@ -1,41 +1,48 @@
+import { updateListRelatedState } from "./updateBlockedList.js";
+
 export const STORAGE_KEY = "blockedSites";
 
-export const getBlockedSites = (callback) => {
-  chrome.storage.local.get(STORAGE_KEY, ({ blockedSites = [] }) => {
-    callback(blockedSites);
-  });
+const setBlockedSites = (blockedSites) => {
+  chrome.storage.local.set({ [STORAGE_KEY]: blockedSites });
 };
 
-const setBlockedSites = (blockedSites, callback) => {
-  chrome.storage.local.set({ [STORAGE_KEY]: blockedSites }, callback);
+export const getBlockedSites = async () => {
+  const { blockedSites = [] } = await chrome.storage.local.get(STORAGE_KEY);
+  return blockedSites;
 };
 
-export const toggleBlockedSite = (link, time, isWholeDomain, callback) => {
-  getBlockedSites((blockedSites) => {
-    const existingIndex = blockedSites.findIndex((site) => site.link === link);
+export const toggleBlockedSite = async (link, time, isWholeDomain) => {
+  const blockedSites = await getBlockedSites();
+  const existingIndex = blockedSites.findIndex((site) => site.link === link);
 
-    if (existingIndex > -1) {
-      blockedSites.splice(existingIndex, 1);
-    } else {
-      blockedSites.push({ link, time, isWholeDomain });
-    }
-
-    setBlockedSites(blockedSites, () => callback(blockedSites));
-  });
-};
-
-export const removeBlockedSite = (link, callback) => {
-  getBlockedSites((blockedSites) => {
-    const updatedSites = blockedSites.filter((site) => site.link !== link);
-
-    setBlockedSites(updatedSites, () => callback(updatedSites));
-  });
-};
-
-export const addBlockedSite = (link, time, isWholeDomain, callback) => {
-  getBlockedSites((blockedSites) => {
+  if (existingIndex > -1) {
+    blockedSites.splice(existingIndex, 1);
+  } else {
     blockedSites.push({ link, time, isWholeDomain });
+  }
 
-    setBlockedSites(blockedSites, () => callback(blockedSites));
-  });
+  setBlockedSites(blockedSites);
+  updateListRelatedState(blockedSites);
+
+  return blockedSites;
+};
+
+export const removeBlockedSite = async (link) => {
+  const blockedSites = await getBlockedSites();
+  const updatedSites = blockedSites.filter((site) => site.link !== link);
+
+  setBlockedSites(updatedSites);
+  updateListRelatedState(updatedSites);
+
+  return updatedSites;
+};
+
+export const addBlockedSite = async (link, time, isWholeDomain) => {
+  const blockedSites = await getBlockedSites();
+  blockedSites.push({ link, time, isWholeDomain });
+
+  setBlockedSites(blockedSites);
+  updateListRelatedState(blockedSites);
+
+  return blockedSites;
 };

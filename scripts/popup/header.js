@@ -1,2 +1,5 @@
-const closeButton = document.querySelector("#cross");
-closeButton.addEventListener("click", () => window.close());
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelector("#cross")
+    .addEventListener("click", () => window.close());
+});

@@ -9,6 +9,8 @@
 
 .blocked-list__list {
   list-style-type: none;
+  overflow-y: auto;
+  margin-bottom: 10px;
   display: flex;
   gap: 10px;
   flex-direction: column;

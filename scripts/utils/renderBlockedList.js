@@ -1,11 +1,6 @@
 import { removeBlockedSite } from "./storageUtils.js";
 
-export const renderBlockedList = (
-  container,
-  blockedSites,
-  chrome,
-  callback
-) => {
+export const renderBlockedList = (container, blockedSites, chrome) => {
   container.innerHTML = "";
 
   const title = document.createElement("p");
@@ -47,9 +42,7 @@ export const renderBlockedList = (
     editIcon.src = chrome.runtime.getURL("../../../assets/edit.svg");
 
     const removeButton = document.createElement("button");
-    removeButton.addEventListener("click", () =>
-      removeBlockedSite(link, callback)
-    );
+    removeButton.addEventListener("click", () => removeBlockedSite(link));
     removeButton.className = "danger-button blocked-list__button-base";
 
     const removeIcon = document.createElement("img");
