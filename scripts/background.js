@@ -1,10 +1,5 @@
 import { renderExpirationScreen } from "./utils/renderExpirationScreen.js";
 
-const startTimerForTab = (tabId) => {
-  const expirationTime = Date.now() + 300000;
-  chrome.alarms.create(`tab-${tabId}`, { when: expirationTime });
-};
-
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === "closeCurrentTab" && sender.tab?.id) {
     chrome.tabs.remove(sender.tab.id);
@@ -17,26 +12,28 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     tab.url &&
     !isRestrictedUrl(tab.url)
   ) {
-    startTimerForTab(tabId);
+    const expirationTime = Date.now() + 3000;
+    chrome.alarms.create(`tab-${tabId}`, { when: expirationTime });
   }
 });
 
-chrome.alarms.onAlarm.addListener((alarm) => {
-  const tabId = parseInt(alarm.name.split("-")[1]);
+chrome.alarms.onAlarm.addListener(async (alarm) => {
+  const tabId = parseInt(alarm.name.replace("tab-", ""), 10);
+  if (isNaN(tabId)) return;
 
-  if (!isNaN(tabId)) {
-    chrome.tabs.get(tabId, (tab) => {
-      if (tab?.url && !isRestrictedUrl(tab.url)) {
-        chrome.scripting.executeScript({
-          target: { tabId },
-          func: renderExpirationScreen,
-        });
-      }
-    });
+  try {
+    const tab = await chrome.tabs.get(tabId);
+
+    if (tab?.url && !isRestrictedUrl(tab.url)) {
+      await chrome.scripting.executeScript({
+        target: { tabId },
+        func: renderExpirationScreen,
+      });
+    }
+  } catch (error) {
+    console.error(error);
   }
 });
 
-const isRestrictedUrl = (url) =>
-  url.startsWith("chrome://") ||
-  url.startsWith("about:") ||
-  url.startsWith("edge://");
+const URL_REGEX = /^chrome:|^about:|^edge:/i;
+const isRestrictedUrl = (url) => URL_REGEX.test(url);
