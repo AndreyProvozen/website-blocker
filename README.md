@@ -24,3 +24,10 @@ Stay focused by blocking distracting websites with ease.
 ## License
 
 This project is licensed under the [MIT License](https://mit-license.org/).
+
+## Future Plans (That’s my JIRA :))
+
+- Add pagination, search, and filtering options for the blocked sites list.
+- Implement an edit option for blocked sites
+- Optimize build process and performance with a bundler
+- Improve error messages for invalid inputs

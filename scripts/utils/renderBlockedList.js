@@ -35,12 +35,6 @@ export const renderBlockedList = (container, blockedSites, chrome) => {
     const actionWrapper = document.createElement("div");
     actionWrapper.className = "blocked-list__section-wrapper";
 
-    const editButton = document.createElement("button");
-    editButton.className = "primary-button blocked-list__button-base";
-
-    const editIcon = document.createElement("img");
-    editIcon.src = chrome.runtime.getURL("../../../assets/edit.svg");
-
     const removeButton = document.createElement("button");
     removeButton.addEventListener("click", () => removeBlockedSite(link));
     removeButton.className = "danger-button blocked-list__button-base";
@@ -50,9 +44,6 @@ export const renderBlockedList = (container, blockedSites, chrome) => {
     removeIcon.alt = "Remove";
 
     removeButton.appendChild(removeIcon);
-    editButton.appendChild(editIcon);
-
-    actionWrapper.appendChild(editButton);
     actionWrapper.appendChild(removeButton);
 
     listItem.appendChild(linkWrapper);
