@@ -15,14 +15,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!activeTab) return;
 
-  const currentDomain = new URL(activeTab.url).hostname;
-
   const blockedSites = await getBlockedSites();
   updateListRelatedState(blockedSites);
 
   document
     .querySelector("#block-site-button")
     .addEventListener("click", () =>
-      toggleBlockedSite(currentDomain, DEFAULT_TIME, DEFAULT_IS_WHOLE_DOMAIN)
+      toggleBlockedSite(activeTab.url, DEFAULT_TIME, DEFAULT_IS_WHOLE_DOMAIN)
     );
 });

@@ -1,4 +1,5 @@
 import { renderExpirationScreen } from "./utils/renderExpirationScreen.js";
+import { getBlockedSites } from "./utils/storageUtils.js";
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === "closeCurrentTab" && sender.tab?.id) {
@@ -23,8 +24,29 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
   try {
     const tab = await chrome.tabs.get(tabId);
+    const tabUrl = tab?.url;
 
-    if (tab?.url && !isRestrictedUrl(tab.url)) {
+    if (!tabUrl || isRestrictedUrl(tabUrl)) return;
+
+    const blockedSites = await getBlockedSites();
+
+    const isBlocked = blockedSites.some(({ link, isWholeDomain }) => {
+      if (isWholeDomain) {
+        try {
+          const blockedDomain = new URL(link).hostname;
+          const currentDomain = new URL(tabUrl).hostname;
+
+          return currentDomain.endsWith(blockedDomain);
+        } catch (e) {
+          console.error("Invalid URL in blocked list:", link);
+          return false;
+        }
+      }
+
+      return tabUrl === link;
+    });
+
+    if (isBlocked) {
       await chrome.scripting.executeScript({
         target: { tabId },
         func: renderExpirationScreen,

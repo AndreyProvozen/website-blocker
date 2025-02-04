@@ -1,17 +1,15 @@
 import { renderEmptyList } from "./renderEmptyList.js";
 import { renderBlockedList } from "./renderBlockedList.js";
 
-const blockSiteButtonElement = document.querySelector("#block-site-button");
-const blockedListTabElement = document.querySelector("#blocked-list-tab");
-
 const updateButtonState = (blockedSites) => {
+  const blockSiteButtonElement = document.querySelector("#block-site-button");
+
   chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
     if (!tabs?.length) return;
 
     const [{ url }] = tabs;
-    const currentDomain = new URL(url).hostname;
 
-    const isBlocked = blockedSites.some((site) => site.link === currentDomain);
+    const isBlocked = blockedSites.some((site) => site.link === url);
 
     if (isBlocked) {
       blockSiteButtonElement.textContent = "Remove from blocked list";
@@ -22,6 +20,8 @@ const updateButtonState = (blockedSites) => {
 };
 
 const blockedListContent = (blockedSites) => {
+  const blockedListTabElement = document.querySelector("#blocked-list-tab");
+
   if (blockedSites.length === 0) {
     renderEmptyList(blockedListTabElement, chrome);
     return;
