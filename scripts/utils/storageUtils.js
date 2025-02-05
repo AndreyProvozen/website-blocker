@@ -12,14 +12,20 @@ export const getBlockedSites = async () => {
   return blockedSites;
 };
 
-export const toggleBlockedSite = async (link, time, isWholeDomain) => {
+export const toggleBlockedSite = async (link, dayTimeLimit, isWholeDomain) => {
   const blockedSites = await getBlockedSites();
   const existingIndex = blockedSites.findIndex((site) => site.link === link);
 
   if (existingIndex > -1) {
     blockedSites.splice(existingIndex, 1);
   } else {
-    blockedSites.push({ id: generateUniqueId(), link, time, isWholeDomain });
+    blockedSites.push({
+      id: generateUniqueId(),
+      timeLeft: dayTimeLimit,
+      link,
+      dayTimeLimit,
+      isWholeDomain,
+    });
   }
 
   setBlockedSites(blockedSites);
@@ -38,9 +44,16 @@ export const removeBlockedSite = async (link) => {
   return updatedSites;
 };
 
-export const addBlockedSite = async (link, time, isWholeDomain) => {
+export const addBlockedSite = async (link, dayTimeLimit, isWholeDomain) => {
   const blockedSites = await getBlockedSites();
-  blockedSites.push({ id: generateUniqueId(), link, time, isWholeDomain });
+
+  blockedSites.push({
+    id: generateUniqueId(),
+    timeLeft: dayTimeLimit,
+    link,
+    dayTimeLimit,
+    isWholeDomain,
+  });
 
   setBlockedSites(blockedSites);
   updateListRelatedState(blockedSites);
