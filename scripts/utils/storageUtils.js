@@ -1,3 +1,4 @@
+import generateUniqueId from "./generateUniqueId.js";
 import { updateListRelatedState } from "./updateBlockedList.js";
 
 export const STORAGE_KEY = "blockedSites";
@@ -18,7 +19,7 @@ export const toggleBlockedSite = async (link, time, isWholeDomain) => {
   if (existingIndex > -1) {
     blockedSites.splice(existingIndex, 1);
   } else {
-    blockedSites.push({ link, time, isWholeDomain });
+    blockedSites.push({ id: generateUniqueId(), link, time, isWholeDomain });
   }
 
   setBlockedSites(blockedSites);
@@ -39,7 +40,7 @@ export const removeBlockedSite = async (link) => {
 
 export const addBlockedSite = async (link, time, isWholeDomain) => {
   const blockedSites = await getBlockedSites();
-  blockedSites.push({ link, time, isWholeDomain });
+  blockedSites.push({ id: generateUniqueId(), link, time, isWholeDomain });
 
   setBlockedSites(blockedSites);
   updateListRelatedState(blockedSites);

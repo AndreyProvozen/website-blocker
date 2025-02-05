@@ -1,4 +1,4 @@
-export const renderEmptyList = (container, chrome) => {
+const renderEmptyList = (container, chrome) => {
   container.innerHTML = "";
 
   const emptyListImage = document.createElement("img");
@@ -36,3 +36,5 @@ export const renderEmptyList = (container, chrome) => {
 
   container.appendChild(emptyListContainer);
 };
+
+export default renderEmptyList;

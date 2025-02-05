@@ -1,4 +1,4 @@
-import { renderExpirationScreen } from "./utils/renderExpirationScreen.js";
+import renderExpirationScreen from "./utils/renderExpirationScreen.js";
 import { getBlockedSites } from "./utils/storageUtils.js";
 
 chrome.runtime.onMessage.addListener((message, sender) => {

@@ -1,6 +1,6 @@
 import { removeBlockedSite } from "./storageUtils.js";
 
-export const renderBlockedList = (container, blockedSites, chrome) => {
+const renderBlockedList = (container, blockedSites, chrome) => {
   container.innerHTML = "";
 
   const title = document.createElement("p");
@@ -55,3 +55,5 @@ export const renderBlockedList = (container, blockedSites, chrome) => {
   container.appendChild(title);
   container.appendChild(list);
 };
+
+export default renderBlockedList;

@@ -1,4 +1,4 @@
-export const renderExpirationScreen = () => {
+const renderExpirationScreen = () => {
   const existingMessage = document.querySelector("#expiration-wrapper");
 
   if (existingMessage) return;
@@ -109,3 +109,5 @@ export const renderExpirationScreen = () => {
   document.body.appendChild(wrapper);
   document.body.style.overflow = "hidden";
 };
+
+export default renderExpirationScreen;
