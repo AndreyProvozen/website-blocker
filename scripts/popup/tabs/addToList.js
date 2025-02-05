@@ -1,3 +1,4 @@
+import convertTimeToMs from "../../utils/convertTimeToMs.js";
 import { addBlockedSite } from "../../utils/storageUtils.js";
 
 const isValidUrl = (url) => {
@@ -9,7 +10,7 @@ const isValidUrl = (url) => {
   }
 };
 
-const MIN_TIME = "00:01";
+const MIN_TIME = 1 * 60 * 1000; // 1 minute
 
 const linkInput = document.querySelector("#new-blocked-link");
 const timeInput = document.querySelector("#block-time");
@@ -31,14 +32,16 @@ addButton.addEventListener("click", async () => {
     isValid = false;
   }
 
-  if (time < MIN_TIME) {
+  const timeInMs = convertTimeToMs(time);
+
+  if (timeInMs < MIN_TIME) {
     timeInput.classList.add("error");
     isValid = false;
   }
 
   if (!isValid) return;
 
-  await addBlockedSite(link, time, isWholeDomain);
+  await addBlockedSite(link, timeInMs, isWholeDomain);
 
   linkInput.value = "";
   timeInput.value = "";

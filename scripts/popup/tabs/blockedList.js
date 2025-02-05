@@ -4,7 +4,7 @@ import {
 } from "../../utils/storageUtils.js";
 import { updateListRelatedState } from "../../utils/updateBlockedList.js";
 
-const DEFAULT_TIME = "00:25";
+const DEFAULT_TIME = 25 * 60 * 1000; // 25 minute;
 const DEFAULT_IS_WHOLE_DOMAIN = false;
 
 document.addEventListener("DOMContentLoaded", async () => {
