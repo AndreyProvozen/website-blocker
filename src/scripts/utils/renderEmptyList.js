@@ -4,9 +4,7 @@ const renderEmptyList = (container, chrome) => {
   const emptyListImage = document.createElement("img");
   emptyListImage.className = "blocked-list__empty-list-image";
   emptyListImage.alt = "Empty list image";
-  emptyListImage.src = chrome.runtime.getURL(
-    "../../images/empty-list-icon.png"
-  );
+  emptyListImage.src = chrome.runtime.getURL("src/images/empty-list-icon.png");
 
   const emptyListTitle = document.createElement("p");
   emptyListTitle.textContent = "Your blocked list is empty";

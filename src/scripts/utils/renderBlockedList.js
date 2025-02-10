@@ -20,9 +20,7 @@ const renderBlockedList = (container, blockedSites, chrome) => {
     linkWrapper.className = "blocked-list__section-wrapper";
 
     const linkTypeImage = document.createElement("img");
-    linkTypeImage.src = chrome.runtime.getURL(
-      `../../../assets/${linkType}.svg`
-    );
+    linkTypeImage.src = chrome.runtime.getURL(`src/assets/${linkType}.svg`);
     linkTypeImage.alt = "link type icon";
 
     const blockedLink = document.createElement("p");
@@ -40,7 +38,7 @@ const renderBlockedList = (container, blockedSites, chrome) => {
     removeButton.className = "danger-button blocked-list__button-base";
 
     const removeIcon = document.createElement("img");
-    removeIcon.src = chrome.runtime.getURL("../../../assets/trash.svg");
+    removeIcon.src = chrome.runtime.getURL("src/assets/trash.svg");
     removeIcon.alt = "Remove";
 
     removeButton.appendChild(removeIcon);

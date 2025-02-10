@@ -7,8 +7,8 @@ export default defineConfig({
     outDir: "dist",
     rollupOptions: {
       input: {
-        background: path.resolve(__dirname, "background.js"),
-        popup: path.resolve(__dirname, "popup.html"),
+        background: path.resolve(__dirname, "src/background.js"),
+        popup: path.resolve(__dirname, "src/popup.html"),
       },
       output: {
         entryFileNames: "[name].js",
@@ -20,8 +20,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         { src: path.resolve(__dirname, "manifest.json"), dest: "" },
-        { src: path.resolve(__dirname, "images"), dest: "" },
-        { src: path.resolve(__dirname, "assets"), dest: "" },
+        { src: path.resolve(__dirname, "src/images"), dest: "" },
+        { src: path.resolve(__dirname, "src/assets"), dest: "" },
       ],
     }),
   ],
