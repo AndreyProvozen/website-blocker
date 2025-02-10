@@ -29,5 +29,4 @@ This project is licensed under the [MIT License](https://mit-license.org/).
 
 - Add pagination, search, and filtering options for the blocked sites list.
 - Implement an edit option for blocked sites
-- Optimize build process and performance with a bundler
 - Improve error messages for invalid inputs

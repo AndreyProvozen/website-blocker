@@ -7,6 +7,15 @@
   text-align: center;
 }
 
+.blocked-list__link {
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .blocked-list__list {
   list-style-type: none;
   overflow-y: auto;
@@ -28,6 +37,7 @@
   justify-content: space-between;
   border: 2px solid #ccc;
   padding: 8px;
+  gap: 10px;
   border-radius: 4px;
   transition: border-color 0.3s ease;
 
