@@ -83,7 +83,7 @@ const renderExpirationScreen = () => {
   content.className = "exp-content";
 
   const image = document.createElement("img");
-  image.src = chrome.runtime.getURL("../images/icon-128.png");
+  image.src = chrome.runtime.getURL("src/images/icon-128.png");
   image.className = "exp-logo";
   image.alt = "Extension logo icon";
 
