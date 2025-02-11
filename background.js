@@ -1,5 +1,5 @@
-import renderExpirationScreen from "./scripts/utils/renderExpirationScreen.js";
-import { getBlockedSites } from "./scripts/utils/storageUtils.js";
+import renderExpirationScreen from "./src/scripts/utils/renderExpirationScreen.js";
+import { getBlockedSites } from "./src/scripts/utils/storageUtils.js";
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === "closeCurrentTab" && sender.tab?.id) {

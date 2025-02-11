@@ -22,7 +22,7 @@
   "host_permissions": ["https://*/*", "http://*/*"],
   "permissions": ["activeTab", "scripting", "storage", "tabs", "alarms"],
   "background": {
-    "service_worker": "src/background.js",
+    "service_worker": "background.js",
     "type": "module"
   },
   "web_accessible_resources": [

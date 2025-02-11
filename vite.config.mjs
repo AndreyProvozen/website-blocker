@@ -5,9 +5,10 @@ import path from "path";
 export default defineConfig({
   build: {
     outDir: "dist",
+    assetsDir: "src/assets",
     rollupOptions: {
       input: {
-        background: path.resolve(__dirname, "src/background.js"),
+        background: path.resolve(__dirname, "background.js"),
         popup: path.resolve(__dirname, "src/popup.html"),
       },
       output: {
@@ -20,8 +21,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         { src: path.resolve(__dirname, "manifest.json"), dest: "" },
-        { src: path.resolve(__dirname, "src/images"), dest: "" },
-        { src: path.resolve(__dirname, "src/assets"), dest: "" },
+        { src: path.resolve(__dirname, "src/images"), dest: "src" },
+        { src: path.resolve(__dirname, "src/assets"), dest: "src" },
       ],
     }),
   ],
