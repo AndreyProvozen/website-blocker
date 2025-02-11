@@ -25,6 +25,12 @@ button {
   outline: none;
 }
 
+.error-message {
+  color: var(--red);
+  font-size: var(--font-size-small);
+  margin-top: 4px;
+}
+
 input:not([type="checkbox"]) {
   width: 100%;
   padding: 8px;
@@ -52,6 +58,7 @@ input:not([type="checkbox"]).error {
 }
 
 label {
+  display: block;
   margin-bottom: 4px;
   color: var(--gray-dark);
 }

@@ -17,8 +17,23 @@ const timeInput = document.querySelector("#block-time");
 const isWholeSiteCheckbox = document.querySelector("#block-whole-site");
 const addButton = document.querySelector("#add-to-list-button");
 
-linkInput.addEventListener("input", () => linkInput.classList.remove("error"));
-timeInput.addEventListener("input", () => timeInput.classList.remove("error"));
+const linkError = document.createElement("p");
+linkError.classList.add("error-message");
+linkInput.parentNode.appendChild(linkError);
+
+const timeError = document.createElement("p");
+timeError.classList.add("error-message");
+timeInput.parentNode.appendChild(timeError);
+
+linkInput.addEventListener("input", () => {
+  linkInput.classList.remove("error");
+  linkError.textContent = "";
+});
+
+timeInput.addEventListener("input", () => {
+  timeInput.classList.remove("error");
+  timeError.textContent = "";
+});
 
 addButton.addEventListener("click", async () => {
   const link = linkInput.value.trim();
@@ -29,6 +44,7 @@ addButton.addEventListener("click", async () => {
 
   if (!isValidUrl(link)) {
     linkInput.classList.add("error");
+    linkError.textContent = "Please enter a valid website link";
     isValid = false;
   }
 
@@ -36,6 +52,7 @@ addButton.addEventListener("click", async () => {
 
   if (timeInMs < MIN_TIME) {
     timeInput.classList.add("error");
+    timeError.textContent = "Time must be at least 1 minute";
     isValid = false;
   }
 
