@@ -1,4 +1,4 @@
-import { removeBlockedSite } from "./storageUtils.js";
+import { removeBlockedSite } from "../utils/storageUtils.js";
 
 const renderBlockedList = (container, blockedSites, chrome) => {
   container.innerHTML = "";

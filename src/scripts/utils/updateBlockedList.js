@@ -1,5 +1,5 @@
-import renderEmptyList from "./renderEmptyList.js";
-import renderBlockedList from "./renderBlockedList.js";
+import renderEmptyList from "../renderers/renderEmptyList.js";
+import renderBlockedList from "../renderers/renderBlockedList.js";
 
 const updateButtonState = (blockedSites) => {
   const blockSiteButtonElement = document.querySelector("#block-site-button");
