@@ -3,7 +3,7 @@ import { updateListRelatedState } from "./updateBlockedList.js";
 
 export const STORAGE_KEY = "blockedSites";
 
-const setBlockedSites = (blockedSites) => {
+export const setBlockedSites = (blockedSites) => {
   chrome.storage.local.set({ [STORAGE_KEY]: blockedSites });
 };
 
