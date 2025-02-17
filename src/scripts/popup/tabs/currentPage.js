@@ -1,3 +1,6 @@
+import formatMsToTime from "../../utils/convertMsToTime.js";
+import { getBlockedSites } from "../../utils/storageUtils.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   const [activeTab] = await chrome.tabs.query({
     active: true,
@@ -8,6 +11,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const { favIconUrl, url } = activeTab;
   const { hostname } = new URL(url);
+
+  const blockedSites = await getBlockedSites();
+
+  const blockedSite = blockedSites.find((site) => {
+    const { link, isWholeDomain } = site;
+
+    if (isWholeDomain) {
+      try {
+        const blockedDomain = new URL(link).hostname;
+
+        return hostname.endsWith(blockedDomain);
+      } catch (e) {
+        return false;
+      }
+    }
+
+    return url === link;
+  });
 
   const websiteIconElement = document.querySelector("#website-icon");
   const domainElement = document.querySelector("#domain");
@@ -27,7 +48,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   domainElement.textContent = hostname;
   fullLinkElement.textContent = fullLinkElement.title = url;
 
-  timeRemainingElement.textContent = "00:10:00";
+  timeRemainingElement.textContent = blockedSite
+    ? formatMsToTime(blockedSite.timeLeft)
+    : "00:25:00";
 
   addWithConfigurationButton.addEventListener("click", () => {
     linkInput.value = url;
