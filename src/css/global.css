@@ -38,6 +38,14 @@ button {
   outline: none;
 }
 
+button:disabled {
+  background-color: var(--gray);
+  color: var(--gray-dark);
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
 .error-message {
   color: var(--red);
   font-size: var(--font-size-small);

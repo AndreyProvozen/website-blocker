@@ -1,4 +1,5 @@
 import convertTimeToMs from "../../utils/convertTimeToMs.js";
+import isRestrictedUrl from "../../utils/isRestrictedUrl.js";
 import { addBlockedSite } from "../../utils/storageUtils.js";
 
 const isValidUrl = (url) => {
@@ -42,7 +43,7 @@ addButton.addEventListener("click", async () => {
 
   let isValid = true;
 
-  if (!isValidUrl(link)) {
+  if (!isValidUrl(link) || isRestrictedUrl(link)) {
     linkInput.classList.add("error");
     linkError.textContent = "Please enter a valid website link";
     isValid = false;
