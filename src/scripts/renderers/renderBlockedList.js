@@ -23,8 +23,10 @@ const renderBlockedList = (container, blockedSites, chrome) => {
     linkTypeImage.src = chrome.runtime.getURL(`src/assets/${linkType}.svg`);
     linkTypeImage.alt = "link type icon";
 
-    const blockedLink = document.createElement("p");
+    const blockedLink = document.createElement("a");
     blockedLink.className = "blocked-list__link";
+    blockedLink.target = "_blank";
+    blockedLink.href = link;
     blockedLink.textContent = link;
 
     linkWrapper.appendChild(linkTypeImage);

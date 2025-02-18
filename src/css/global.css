@@ -15,6 +15,19 @@ body {
   margin: 0;
 }
 
+a {
+  color: var(--sky-blue);
+  font-size: var(--font-size-medium);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--coral);
+    text-decoration: underline;
+  }
+}
+
 button {
   padding: 6px 12px;
   border-radius: 6px;
