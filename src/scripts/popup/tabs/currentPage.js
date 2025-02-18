@@ -18,13 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const { link, isWholeDomain } = site;
 
     if (isWholeDomain) {
-      try {
-        const blockedDomain = new URL(link).hostname;
-
-        return hostname.endsWith(blockedDomain);
-      } catch (e) {
-        return false;
-      }
+      const blockedDomain = new URL(link).hostname;
+      return hostname.endsWith(blockedDomain);
     }
 
     return url === link;

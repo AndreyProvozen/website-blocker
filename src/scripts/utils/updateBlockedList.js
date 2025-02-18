@@ -1,6 +1,6 @@
 import renderEmptyList from "../renderers/renderEmptyList.js";
 import renderBlockedList from "../renderers/renderBlockedList.js";
-import isRestrictedUrl from "./isRestrictedUrl.js";
+import validateUrl from "./validateUrl.js";
 
 const updateButtonState = (blockedSites) => {
   const blockSiteButtonElement = document.querySelector("#block-site-button");
@@ -10,7 +10,7 @@ const updateButtonState = (blockedSites) => {
 
     const [{ url }] = tabs;
 
-    const isRestricted = isRestrictedUrl(url);
+    const isValidUrl = !validateUrl(url);
     const isBlocked = blockedSites.some((site) => site.link === url);
 
     if (isBlocked) {
@@ -19,7 +19,7 @@ const updateButtonState = (blockedSites) => {
       blockSiteButtonElement.textContent = "Add to blocked list";
     }
 
-    blockSiteButtonElement.disabled = isRestricted;
+    blockSiteButtonElement.disabled = isValidUrl;
   });
 };
 

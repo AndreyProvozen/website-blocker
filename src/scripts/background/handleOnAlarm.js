@@ -1,5 +1,5 @@
 import { getBlockedSites } from "../utils/storageUtils.js";
-import isRestrictedUrl from "../utils/isRestrictedUrl.js";
+import validateUrl from "../utils/validateUrl.js";
 import renderExpirationScreen from "../renderers/renderExpirationScreen.js";
 
 const handleOnAlarm = async (alarm) => {
@@ -11,20 +11,16 @@ const handleOnAlarm = async (alarm) => {
     const tab = await chrome.tabs.get(tabId);
     const tabUrl = tab?.url;
 
-    if (!tabUrl || isRestrictedUrl(tabUrl)) return;
+    if (!validateUrl(tabUrl)) return;
 
     const blockedSites = await getBlockedSites();
 
+    const { hostname } = new URL(tabUrl);
+
     const isBlocked = blockedSites.some(({ link, isWholeDomain }) => {
       if (isWholeDomain) {
-        try {
-          const blockedDomain = new URL(link).hostname;
-          const currentDomain = new URL(tabUrl).hostname;
-
-          return currentDomain.endsWith(blockedDomain);
-        } catch (e) {
-          return false;
-        }
+        const blockedDomain = new URL(link).hostname;
+        return hostname.endsWith(blockedDomain);
       }
 
       return tabUrl === link;
