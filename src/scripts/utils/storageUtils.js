@@ -9,6 +9,7 @@ export const setBlockedSites = (blockedSites) => {
 
 export const getBlockedSites = async () => {
   const { blockedSites = [] } = await chrome.storage.local.get(STORAGE_KEY);
+  console.log(112233, blockedSites);
   return blockedSites;
 };
 
