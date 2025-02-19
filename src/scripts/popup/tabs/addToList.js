@@ -1,15 +1,6 @@
 import convertTimeToMs from "../../utils/convertTimeToMs.js";
-import isRestrictedUrl from "../../utils/isRestrictedUrl.js";
-import { addBlockedSite } from "../../utils/storageUtils.js";
-
-const isValidUrl = (url) => {
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-};
+import validateUrl from "../../utils/validateUrl.js";
+import { addBlockedSite, getBlockedSites } from "../../utils/storageUtils.js";
 
 const MIN_TIME = 1 * 60 * 1000; // 1 minute
 
@@ -43,7 +34,7 @@ addButton.addEventListener("click", async () => {
 
   let isValid = true;
 
-  if (!isValidUrl(link) || isRestrictedUrl(link)) {
+  if (!validateUrl(link)) {
     linkInput.classList.add("error");
     linkError.textContent = "Please enter a valid website link";
     isValid = false;
@@ -58,6 +49,15 @@ addButton.addEventListener("click", async () => {
   }
 
   if (!isValid) return;
+
+  const blockedSites = await getBlockedSites();
+  const linkExists = blockedSites.some((site) => site.link === link);
+
+  if (linkExists) {
+    linkInput.classList.add("error");
+    linkError.textContent = "This website is already blocked";
+    return;
+  }
 
   await addBlockedSite(link, timeInMs, isWholeDomain);
 
