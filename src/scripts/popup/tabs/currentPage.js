@@ -1,7 +1,7 @@
 import formatMsToTime from "../../utils/convertMsToTime.js";
 import { getBlockedSites } from "../../utils/storageUtils.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
+const updateTabInfo = async () => {
   const [activeTab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
@@ -12,18 +12,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   const { favIconUrl, url } = activeTab;
   const { hostname } = new URL(url);
 
-  const blockedSites = await getBlockedSites();
+  let blockedSites = await getBlockedSites();
 
-  const blockedSite = blockedSites.find((site) => {
-    const { link, isWholeDomain } = site;
-
-    if (isWholeDomain) {
-      const blockedDomain = new URL(link).hostname;
-      return hostname.endsWith(blockedDomain);
+  blockedSites = blockedSites.map((site) => {
+    if (
+      site.link === url ||
+      (site.isWholeDomain && hostname.endsWith(new URL(site.link).hostname))
+    ) {
+      return { ...site, timeLeft: Math.max((site.timeLeft || 0) - 1000, 0) };
     }
-
-    return url === link;
+    return site;
   });
+
+  const blockedSite = blockedSites.find(
+    (site) =>
+      site.link === url ||
+      (site.isWholeDomain && hostname.endsWith(new URL(site.link).hostname))
+  );
 
   const websiteIconElement = document.querySelector("#website-icon");
   const domainElement = document.querySelector("#domain");
@@ -51,4 +56,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     linkInput.value = url;
     addToListNavButton.click();
   });
+};
+
+document.addEventListener("DOMContentLoaded", updateTabInfo);
+
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName === "local" && changes.blockedSites) {
+    updateTabInfo();
+  }
+
+  setInterval(updateTabInfo, 1000);
 });

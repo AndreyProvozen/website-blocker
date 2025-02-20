@@ -50,7 +50,7 @@ npm install
 
 - Add pagination, search, and filtering options for the blocked sites list.
 - Implement an edit option for blocked sites
-- Implement logic for time field
+- Refactor and optimize time logic
 
 ## 📸 Screenshots
 

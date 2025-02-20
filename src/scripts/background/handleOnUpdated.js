@@ -15,10 +15,8 @@ const handleOnUpdated = async (tabId, { status }, { url }) => {
       return url === link;
     });
 
-    if (blockedSite && blockedSite.timeLeft > 0) {
-      const expirationTime = Date.now() + blockedSite.timeLeft;
-
-      chrome.alarms.create(`tab-${tabId}`, { when: expirationTime });
+    if (blockedSite && blockedSite.timeLeft === 0) {
+      chrome.alarms.create(`tab-${tabId}`, { when: Date.now() });
     }
   }
 };
