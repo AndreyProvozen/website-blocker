@@ -4,7 +4,8 @@
   "description": "Stay focused by blocking distracting websites with ease.",
   "main": "index.js",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "zip": "cd dist && zip -r ../extension.zip *"
   },
   "keywords": [],
   "author": "Andrey Provozen",
