@@ -1,8 +1,19 @@
-import { getBlockedSites } from "../utils/storageUtils.js";
+import { getBlockedSites, setBlockedSites } from "../utils/storageUtils.js";
 import validateUrl from "../utils/validateUrl.js";
 import renderExpirationScreen from "../renderers/renderExpirationScreen.js";
 
 const handleOnAlarm = async (alarm) => {
+  if (alarm.name === "resetTimeLeftDaily") {
+    let blockedSites = await getBlockedSites();
+
+    blockedSites = blockedSites.map((site) => ({
+      ...site,
+      timeLeft: site.dayTimeLimit,
+    }));
+
+    return setBlockedSites(blockedSites);
+  }
+
   const tabId = parseInt(alarm.name.replace("tab-", ""), 10);
 
   if (isNaN(tabId)) return;

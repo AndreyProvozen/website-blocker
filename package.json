@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "Stay focused by blocking distracting websites with ease.",
   "main": "index.js",
+  "author": "Andrey Provozen",
+  "license": "MIT",
   "scripts": {
     "build": "vite build",
     "zip": "cd dist && zip -r ../extension.zip *"
   },
-  "keywords": [],
-  "author": "Andrey Provozen",
-  "license": "ISC",
   "devDependencies": {
     "vite": "^6.1.0",
     "vite-plugin-static-copy": "^2.2.0"

@@ -51,6 +51,7 @@ npm install
 - Add pagination, search, and filtering options for the blocked sites list.
 - Implement an edit option for blocked sites
 - Refactor and optimize time logic
+- Resolve bugs
 
 ## 📸 Screenshots
 
